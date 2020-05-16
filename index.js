@@ -25,6 +25,20 @@ app.post("/user", (req, res) => {
   res.send({ status: "User created", name, location });
 });
 
+const fs = require('fs')
+
+
+app.get('/graph', function(req, res){
+    
+	let jsonData = {}
+	fs.readFile('graph.json', 'utf-8', (err, data) => {
+	if (err) throw err
+  
+	jsonData = JSON.parse(data)
+	res.send(jsonData);
+	})
+});
+
 // Listen on port 5000
 app.listen(port, () => {
   console.log(`Server is booming on port 5000
